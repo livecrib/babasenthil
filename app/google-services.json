@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "271543169184",
+    "firebase_url": "https://livecrib-d2330-default-rtdb.firebaseio.com",
+    "project_id": "livecrib-d2330",
+    "storage_bucket": "livecrib-d2330.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271543169184:android:06378ce76fd0bc746e19c5",
+        "android_client_info": {
+          "package_name": "com.crew_x.livecrib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271543169184-t1km8k84vqq4g9930uii4ptqr6n27u2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd7OlsbKe5sfO-pOHKseXNHgAn5dMJ-rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271543169184-t1km8k84vqq4g9930uii4ptqr6n27u2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271543169184:android:6ac41ad47869b06b6e19c5",
+        "android_client_info": {
+          "package_name": "com.example.livecrib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271543169184-s2n8qt1b2htakdq2e416nood9udaotb4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.livecrib",
+            "certificate_hash": "4a1345c9719dcfa633f1f8f01e882388acd62a02"
+          }
+        },
+        {
+          "client_id": "271543169184-t1km8k84vqq4g9930uii4ptqr6n27u2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd7OlsbKe5sfO-pOHKseXNHgAn5dMJ-rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271543169184-t1km8k84vqq4g9930uii4ptqr6n27u2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
