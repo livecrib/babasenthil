@@ -1,13 +1,11 @@
-package com.example.livecrib;
+package com.example.alivecrib;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,20 +13,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity implements ValueEventListener {
-    TextView a,b, c, d, e;
+    FirebaseDatabase firebaseDatabase;
 
-    private final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private final DatabaseReference databaseReference = firebaseDatabase.getReference();
-    private final DatabaseReference firstDatabase = databaseReference.child("senthil/Temperature");
-    private final DatabaseReference secondDatabase = databaseReference.child("senthil/Humidity");
-    private final DatabaseReference thirdDatabase = databaseReference.child("senthil/Diapers");
-    private final DatabaseReference fourthDatabase = databaseReference.child("senthil/AirQuality");
-    private final DatabaseReference fifthDatabase = databaseReference.child("senthil/Ultrasonic");
+    DatabaseReference dR1,dR2, dR3, dR4,dR5;
 
-
-
+    private TextView retrieveTV1;
+    private TextView retrieveTV2;
+    private TextView retrieveTV3;
+    private TextView retrieveTV4;
+    private TextView retrieveTV5;
 
 
     @Override
@@ -36,57 +31,92 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        a= findViewById(R.id.texttemp);
-        b= findViewById(R.id.texthumid);
-        c= findViewById(R.id.textdiapers);
-        d= findViewById(R.id.textairquality);
-        e= findViewById(R.id.textultrasonic);
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
 
+        dR1 = firebaseDatabase.getReference("senthil/Temperature");
+        dR2 = firebaseDatabase.getReference("senthil/Humidity");
+        dR3 = firebaseDatabase.getReference("senthil/Ultrasonic");
+        dR4 = firebaseDatabase.getReference("senthil/AirQuality");
+        dR5 = firebaseDatabase.getReference("senthil/Diapers");
+
+        retrieveTV1 = findViewById(R.id.textTemp);
+        retrieveTV2 = findViewById(R.id.textHumid);
+        retrieveTV3 = findViewById(R.id.textUltrasonic);
+        retrieveTV4 = findViewById(R.id.textAirQuality);
+        retrieveTV5 = findViewById(R.id.textDiapers);
+
+
+
+        getdata();
     }
 
-    protected void onStart(){
+    private void getdata() {
 
-        super.onStart();
-        firstDatabase.addValueEventListener(this);
-        secondDatabase.addValueEventListener(this);
-        thirdDatabase.addValueEventListener(this);
-        fourthDatabase.addValueEventListener(this);
-        fifthDatabase.addValueEventListener(this);
+        dR1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+                retrieveTV1.setText(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Fail to get data1.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dR2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+                retrieveTV2.setText(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Fail to get data2.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dR3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+                retrieveTV3.setText(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Fail to get data3.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dR4.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+                retrieveTV4.setText(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Fail to get data4.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dR5.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+                retrieveTV5.setText(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Fail to get data5.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
-
-    @Override
-    public void onDataChange( DataSnapshot dataSnapshot) {
-
-        if(dataSnapshot.getValue(String.class)!=null){
-            String key = dataSnapshot.getKey();
-            if (key.equals("senthil/Temperature")){
-                String Temp = dataSnapshot.getValue(String.class);
-                a.setText(Temp);
-            }
-            if (key.equals("senthil/Humidity")){
-                String Humid = dataSnapshot.getValue(String.class);
-                b.setText(Humid);
-            }
-            if (key.equals("senthil/Diapers")) {
-                String diapers = dataSnapshot.getValue(String.class);
-                c.setText(diapers);
-            }
-            if (key.equals("senthil/AirQuality")) {
-                String  diapers= dataSnapshot.getValue(String.class);
-                c.setText(diapers);
-            }
-            if (key.equals("senthil/Ultrasonic")) {
-                String ultrasonic = dataSnapshot.getValue(String.class);
-                c.setText(ultrasonic);
-            }
-        }
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError error) {
-
-    }
-
-
 }
